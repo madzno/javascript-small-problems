@@ -1,11 +1,10 @@
 function factorial(num) {
-  let result = num;
-
-  for (currentnum = num - 1; currentnum >= 1; currentnum -= 1) {
-    result *= currentnum
+  if (num === 1) {
+    return 1;
   }
 
-  return result;
+  return num * factorial(num - 1);
+
 }
 
 
