@@ -3,4 +3,4 @@ let myProtoObj = {
   bar: 2,
 };
 
-let mySecondObj = Object.create(myProtoObj);
+let myObj = Object.create(myProtoObj);
