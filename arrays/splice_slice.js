@@ -53,12 +53,36 @@ Algorithm
 1. define a function splice with four parameters array,s tart, deleteCount, ...args
 2. if start is greater than the length of the array, set it equal to the length
 3. if deleteCOunt is greater than the length of the array minus start, set it equal to the length of the array minus start
-4.
+4. declare a variable deletedItems and initialize it to an empty array
+5. declare a variable counter and initialize it to deleteCount
+5. Iterate through the input array starting at start index and adding by 1, iterate until counter is less than or equal to 0
+6. push the current item into the deletedItems array
+7. subtract 1 from delete count
+8.
 */
 
+
 function splice(array, start, deleteCount, ...args) {
-  // ...
+  start = start > array.length ? array.length : start;
+  deleteCount = deleteCount > (array.length - start) ? array.length - start : deleteCount;
+
+  const arrayCopy = slice(array, 0, array.length);
+  const elementCount = args.length;
+  const newLength = array.length + elementCount - deleteCount;
+  array.length = newLength;
+
+  for (let i = 0; i < elementCount; i += 1) {
+    array[start + i] = args[i];
+  }
+
+  let copyBackCount = arrayCopy.length - (start + deleteCount);
+  for (let i = 0; i < copyBackCount; i += 1) {
+    array[start + elementCount + i] = arrayCopy[start + deleteCount + i];
+  }
+
+  return slice(arrayCopy, start, start + deleteCount);
 }
+
 
 console.log(splice([1, 2, 3], 1, 2));              // [2, 3]
 console.log(splice([1, 2, 3], 1, 3));              // [2, 3]
